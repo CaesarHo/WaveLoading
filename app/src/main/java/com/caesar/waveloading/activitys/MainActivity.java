@@ -1,4 +1,4 @@
-package com.caesar.waveloading;
+package com.caesar.waveloading.activitys;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.caesar.waveloading.R;
 import com.caesar.waveloading.fragments.Blank1Fragment;
 import com.caesar.waveloading.fragments.Blank2Fragment;
 import com.caesar.waveloading.fragments.Blank3Fragment;

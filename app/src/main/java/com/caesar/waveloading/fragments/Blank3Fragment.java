@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.caesar.waveloading.R;
+import com.caesar.waveloading.weight.CircleAlarmTimerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +31,10 @@ public class Blank3Fragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private TextView textView1;
+    private TextView textView2;
+    private CircleAlarmTimerView circleAlarmTimerView;
 
     public Blank3Fragment() {
         // Required empty public constructor
@@ -65,7 +71,27 @@ public class Blank3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank3, container, false);
+        View view = inflater.inflate(R.layout.fragment_blank3, container, false);
+        initView(view);
+        return view;
+    }
+
+    private void initView(View view){
+        textView1 = (TextView)view. findViewById(R.id.start);
+        textView2 = (TextView)view. findViewById(R.id.end);
+
+        circleAlarmTimerView = (CircleAlarmTimerView)view. findViewById(R.id.circletimerview);
+        circleAlarmTimerView.setOnTimeChangedListener(new CircleAlarmTimerView.OnTimeChangedListener() {
+            @Override
+            public void start(String starting) {
+                textView1.setText(starting);
+            }
+
+            @Override
+            public void end(String ending) {
+                textView2.setText(ending);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
