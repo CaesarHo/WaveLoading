@@ -68,19 +68,18 @@ public class Blank3Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blank3, container, false);
         initView(view);
         return view;
     }
 
-    private void initView(View view){
-        textView1 = (TextView)view. findViewById(R.id.start);
-        textView2 = (TextView)view. findViewById(R.id.end);
+    private void initView(View view) {
+        textView1 = (TextView) view.findViewById(R.id.start);
+        textView2 = (TextView) view.findViewById(R.id.end);
 
-        circleAlarmTimerView = (CircleAlarmTimerView)view. findViewById(R.id.circletimerview);
+        circleAlarmTimerView = (CircleAlarmTimerView) view.findViewById(R.id.circletimerview);
         circleAlarmTimerView.setOnTimeChangedListener(new CircleAlarmTimerView.OnTimeChangedListener() {
             @Override
             public void start(String starting) {

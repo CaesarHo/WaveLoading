@@ -2,6 +2,7 @@ package com.caesar.waveloading.fragments;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 import com.caesar.waveloading.R;
+import com.caesar.waveloading.activitys.MainActivity;
 import com.caesar.waveloading.weight.WaveDrawable;
 
 /**
@@ -81,6 +84,7 @@ public class Blank1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_blank1, container, false);
+
         mImageView = (ImageView)view. findViewById(R.id.image);
         mWaveDrawable = new WaveDrawable(getActivity(), R.mipmap.ic_launcher);
         mImageView.setImageDrawable(mWaveDrawable);
@@ -217,5 +221,34 @@ public class Blank1Fragment extends Fragment {
         public void onStopTrackingTouch(SeekBar seekBar) {
             // Nothing
         }
+    }
+
+    public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
+    private void addShortcut(String name) {
+        Intent addShortcutIntent = new Intent(ACTION_ADD_SHORTCUT);
+
+        // 不允许重复创建
+        addShortcutIntent.putExtra("duplicate", false);// 经测试不是根据快捷方式的名字判断重复的
+        // 应该是根据快链的Intent来判断是否重复的,即Intent.EXTRA_SHORTCUT_INTENT字段的value
+        // 但是名称不同时，虽然有的手机系统会显示Toast提示重复，仍然会建立快链
+        // 屏幕上没有空间时会提示
+        // 注意：重复创建的行为MIUI和三星手机上不太一样，小米上似乎不能重复创建快捷方式
+
+        // 名字
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+
+        // 图标
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                Intent.ShortcutIconResource.fromContext(getActivity(), R.mipmap.ic_launcher));
+
+        // 设置关联程序
+        Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
+        launcherIntent.setClass(getActivity(), MainActivity.class);
+        launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent);
+
+        // 发送广播
+        getActivity().sendBroadcast(addShortcutIntent);
     }
 }
