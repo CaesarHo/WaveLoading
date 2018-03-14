@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context="com.caesar.waveloading.fragments.Blank2Fragment">
 
+    <Button
+        android:id="@+id/btn_3d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -263,6 +269,56 @@
                 android:layout_toRightOf="@id/tv_border_color" />
 
         </RelativeLayout>
+
     </ScrollView>
+
+
+
+    <TextView
+        android:id="@+id/tv_main1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sb_main1"
+        android:layout_centerHorizontal="true"
+        android:text="滑块一当前值为0" />
+
+    <com.caesar.waveloading.weight.MSeekBar
+        android:id="@+id/sb_main1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_main2"
+        android:layout_marginTop="10dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/bg_seekbar_progress_drawable"
+        android:thumb="@mipmap/icon_seekbar_thumb"
+        app:textBackground="@mipmap/bg_seekbar_display1"
+        app:textColor="@color/white"
+        app:textOrientation="top"
+        app:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_main2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="滑块二当前值为0" />
+
+    <com.caesar.waveloading.weight.MSeekBar
+        android:id="@+id/sb_main2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_main2"
+        android:layout_marginTop="10dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/bg_seekbar_progress_drawable"
+        android:thumb="@mipmap/icon_seekbar_thumb"
+        app:textBackground="@mipmap/bg_seekbar_display2"
+        app:textColor="@color/white"
+        app:textOrientation="bottom"
+        app:textSize="14sp" />
 
 </LinearLayout>

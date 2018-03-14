@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.caesar.waveloading.R;
+import com.caesar.waveloading.weight.MSeekBar;
 import com.caesar.waveloading.weight.WaveLoadingView;
 import com.larswerkman.lobsterpicker.OnColorListener;
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider;
@@ -28,7 +31,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  * Use the {@link Blank2Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Blank2Fragment extends Fragment {
+public class Blank2Fragment extends Fragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,11 +41,32 @@ public class Blank2Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView mTextView1, mTextView2;
+    private MSeekBar mSeekBar1, mSeekBar2;
 
     private WaveLoadingView mWaveLoadingView;
     private int checkedItem = 0;
 
     private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if(seekBar.equals(mSeekBar1)) {
+            mTextView1.setText("滑块一当前值为" + progress);
+        } else if(seekBar.equals(mSeekBar2)) {
+            mTextView2.setText("滑块二当前值为" + progress);
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
 
     public Blank2Fragment() {
         // Required empty public constructor
@@ -82,6 +106,7 @@ public class Blank2Fragment extends Fragment {
         mWaveLoadingView = (WaveLoadingView) view.findViewById(R.id.waveLoadingView);
         // Sets the length of the animation, default is 1000.
         mWaveLoadingView.setAnimDuration(3000);
+        view.findViewById(R.id.btn_3d).setOnClickListener(this);
 
         // Shape Type
         view.findViewById(R.id.tv_shape).setOnClickListener(new View.OnClickListener() {
@@ -260,6 +285,14 @@ public class Blank2Fragment extends Fragment {
             public void onColorSelected(@ColorInt int color) {
             }
         });
+
+
+        mTextView1 = (TextView) view.findViewById(R.id.tv_main1);
+        mTextView2 = (TextView) view.findViewById(R.id.tv_main2);
+        mSeekBar1 = (MSeekBar) view.findViewById(R.id.sb_main1);
+        mSeekBar2 = (MSeekBar) view.findViewById(R.id.sb_main2);
+        mSeekBar1.setOnSeekBarChangeListener(this);
+        mSeekBar2.setOnSeekBarChangeListener(this);
         // Inflate the layout for this fragment
         return view;
     }
@@ -283,6 +316,16 @@ public class Blank2Fragment extends Fragment {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnFragmentInteractionListener");
 //        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_3d:
+
+                break;
+        }
     }
 
     @Override
